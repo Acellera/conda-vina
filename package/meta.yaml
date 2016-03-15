@@ -1,0 +1,19 @@
+package:
+  name: vina
+  version: {{ environ.get('BUILD_VERSION', "0.0.1" ) }}
+
+source:
+  path: ..
+
+build:
+  number: {{ environ.get('BUILD_NUMBER', 0 ) }}
+
+
+requirements:
+  build:
+
+  run:
+
+   
+about:
+  license: "GPL"

@@ -1,0 +1,37 @@
+branches:
+ only:
+  - master
+
+matrix:
+ include:
+  - os: linux
+    dist: precise
+    language: generic
+
+
+install:
+ - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+ - bash miniconda.sh -b -p $HOME/miniconda
+ - export PATH="$HOME/miniconda/bin:$PATH"
+ - hash -r
+ - conda config --set always_yes yes
+ - conda install anaconda conda-build -y
+ - conda create -q -n travis-env python=$TRAVIS_PYTHON_VERSION
+ - source activate travis-env
+ - pwd
+ - git describe --tags
+ - export BUILD_VERSION=$(git describe --tags | sed 's/-/ /g' | awk '{print $1}')
+ - export BUILD_NUMBER=$(git describe --tags | sed 's/-/ /g' | awk '{print $2}')
+ # Always set it to 0 so we don't get a new release at every successful commit
+ - export BUILD_NUMBER=0
+
+ - conda build package/
+
+after_success:
+ - conda convert -p osx-64 $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2
+ - conda convert -p win-64 $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2
+ - ls -lR
+ - anaconda -t $ANACONDA_TOKEN upload $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2 -u acellera
+ - anaconda -t $ANACONDA_TOKEN upload osx-64/vina*tar.gz -u acellera
+ - anaconda -t $ANACONDA_TOKEN upload win-64/vina*tar.gz -u acellera
+
