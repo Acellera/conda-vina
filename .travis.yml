@@ -28,6 +28,8 @@ install:
  - conda build package/
 
 after_success:
+ - export PATH="$HOME/miniconda/bin:$PATH"
+ - echo $PATH
  - conda convert -p osx-64 $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2
  - conda convert -p win-64 $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2
  - ls -lR
