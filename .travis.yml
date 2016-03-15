@@ -34,6 +34,6 @@ after_success:
  - conda convert -f -p win-64 $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2
  - ls -lR
  - anaconda -t $ANACONDA_TOKEN upload $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2 -u acellera
- - anaconda -t $ANACONDA_TOKEN upload osx-64/vina*tar.gz -u acellera
- - anaconda -t $ANACONDA_TOKEN upload win-64/vina*tar.gz -u acellera
+ - anaconda -t $ANACONDA_TOKEN upload osx-64/vina*tar.bz2 -u acellera
+ - anaconda -t $ANACONDA_TOKEN upload win-64/vina*tar.bz2 -u acellera
 
