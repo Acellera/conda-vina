@@ -36,4 +36,7 @@ after_success:
  - anaconda -t $ANACONDA_TOKEN upload $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2 -u acellera
  - anaconda -t $ANACONDA_TOKEN upload osx-64/vina*tar.bz2 -u acellera
  - anaconda -t $ANACONDA_TOKEN upload win-64/vina*tar.bz2 -u acellera
+ - anaconda -t $ANACONDA_TOKEN upload $HOME/miniconda/conda-bld/linux-64/vina*.tar.bz2 -u acellera-basic
+ - anaconda -t $ANACONDA_TOKEN upload osx-64/vina*tar.bz2 -u acellera-basic
+ - anaconda -t $ANACONDA_TOKEN upload win-64/vina*tar.bz2 -u acellera-basic
 
